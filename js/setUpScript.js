@@ -18,9 +18,5 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
         window.open('./login.html', '_self');
     });
-  }else{
-    if(user.displayName == null ||flag){
-      window.open('./login.html', '_self');
-    }
-    }
+  }
   });
