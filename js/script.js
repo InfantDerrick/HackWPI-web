@@ -71,7 +71,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
     document.getElementById('currentTemp').innerHTML == snapshot.temperature;
     document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
-    document.getElementById(goalProgressBar).style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+    document.getElementById('goalProgressBar').style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
   });
   //e551d8da3b849d6e3ecc88ffa2ac5cca
   $(function () {
