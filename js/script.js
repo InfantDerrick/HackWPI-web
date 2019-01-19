@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       if(user.displayName == null){
-        window.open('./login.html', '_self');
+        window.open('./startup.html', '_self');
       }
       console.log("success");
       var displayName = firebase.auth().currentUser.displayName;
