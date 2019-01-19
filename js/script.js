@@ -1,6 +1,6 @@
 (function ($) {
   'use strict';
-  var weatherApiCall = 'http://api.openweathermap.org/data/2.5/forecast?q=Acton,us&APPID=e551d8da3b849d6e3ecc88ffa2ac5cca';
+  var weatherApiCall = 'https://api.openweathermap.org/data/2.5/forecast?q=Acton,us&APPID=e551d8da3b849d6e3ecc88ffa2ac5cca';
 
   $.getJSON(weatherApiCall, weatherCallBack);
 
