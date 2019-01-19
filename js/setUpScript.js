@@ -17,3 +17,4 @@ firebase.auth().onAuthStateChanged(function(user) {
   }else{
       window.open('./login.html', '_self');
     }
+  });
