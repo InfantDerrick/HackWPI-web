@@ -47,8 +47,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           console.log(snap.val());
           if(snap.val()){
             document.getElementById('doorstate').innerHTML = "OPEN";
+            document.getElementById('doorIcon').classList.add('mdi-door-open');
           }else{
-            document.getElementById('doorIcon').classList.add('mdi-door');
             document.getElementById('doorstate').innerHTML = "CLOSED";
           }
         });
