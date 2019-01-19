@@ -34,6 +34,15 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('goalProgressBar').style.width = ((current/goal)*(100)).toFixed(2)+"%";
           }
         });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').once('value', function(snap){
+          if(snap.val()){
+            document.getElementById('lightBulb').classList.add('mdi-lightbulb-on');
+            document.getElementById('lightState').innerHTML = "ON";
+          }else{
+            document.getElementById('lightBulb').classList.add('mdi-lightbulb-off');
+            document.getElementById('lightState').innerHTML = "OFF";
+          }
+        })
       });
 
     } else {
