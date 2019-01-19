@@ -3,11 +3,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log("success");
       var displayName = firebase.auth().currentUser.displayName;
       var deviceNumber;
-      firebase.database().ref('users/'+displayName+'/').child('device').once('value').then(function(snapshot){
+      firebase.database().ref('users/'+displayName+'/').child('device').once('value', function(snapshot){
         console.log(snapshot);
         deviceNumber = snapshot.val;
       });
-      firebase.database().ref('devices/'+deviceNumber+'/').once('value').then(function(snapshot){
+      firebase.database().ref('devices/'+deviceNumber+'/').once('value', function(snapshot){
         console.log(snapshot);
         document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
         document.getElementById('currentTemp').innerHTML == snapshot.temperature;
