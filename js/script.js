@@ -40,7 +40,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('lightBulb').classList.add('mdi-lightbulb-on');
             document.getElementById('lightState').innerHTML = "ON";
           }else{
-            document.getElementById('lightBulb').classList.add('mdi-lightbulb-off');
             document.getElementById('lightState').innerHTML = "OFF";
           }
         })
