@@ -16,7 +16,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       var deviceNumber;
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
         console.log(snapshot.val());
-        deviceNumber = snapshot.val().toString();
+        deviceNumber = ''+snapshot.val();
       });
       firebase.database().ref('devices/'+deviceNumber+'/').child('temperature_goal').once('value', function(snapshot){
         console.log(snapshot.val());
