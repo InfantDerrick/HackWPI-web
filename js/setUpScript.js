@@ -7,7 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       var displayName = document.getElementById('displayName').value;
       var imgUrl = document.getElementById('imgUrl').value;
       var deviceNumber = parseInt(document.getElementById('deviceNumber').value);
-      user.updateProfile({
+      firebase.auth().currentUser.updateProfile({
         displayName: displayName,
         photoURL: imgUrl
       }).then(function updateData() {
@@ -17,6 +17,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           }
         });
         window.open('./login.html', '_self');
+    }).catch(function(error){
+      console.log(error);
     });
   }
   });
