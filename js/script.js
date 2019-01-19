@@ -25,9 +25,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('currentTemp').innerHTML = snap.val();
           document.getElementById('mainTemp').innerHTML = snap.val();
           current = snap.val();
-          console.log(current);
+          console.log(current/goal);
         });
-        console.log((current));
+        console.log((current/goal));
         document.getElementById('goalPercent').innerHTML = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2);
           document.getElementById('goalProgressBar').style.width = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2)+"%";
 
