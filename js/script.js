@@ -3,14 +3,14 @@ firebase.auth().onAuthStateChanged(function(user) {
       if(user.displayName == null){
         window.open('./startup.html', '_self');
       }
-      firebase.database().ref('users').once('value', function(snapshot){
-        if(!snapshot.hasChild(user.displayName)){
-          var x = user.displayName;
-          firebase.database().ref('users').set({
-            "sdas": "fuck"
-          });
-        }
-      })
+      // firebase.database().ref('users').once('value', function(snapshot){
+      //   if(!snapshot.hasChild(user.displayName)){
+      //     var x = user.displayName;
+      //     firebase.database().ref('users').set({
+      //       "sdas": "fuck"
+      //     });
+      //   }
+      // })
       console.log("success");
       var displayName = firebase.auth().currentUser.displayName;
       var deviceNumber;
@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         deviceNumber = snapshot.val();
       });
       firebase.database().ref('devices').child(parseInt(deviceNumber)).once('value', function(snapshot){
-        console.log(snapshot.temperature_goal.value());
+        console.log(snapshot.value());
         document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
         document.getElementById('currentTemp').innerHTML == snapshot.temperature;
         document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
