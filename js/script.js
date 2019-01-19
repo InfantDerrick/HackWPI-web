@@ -16,8 +16,14 @@ firebase.auth().onAuthStateChanged(function(user) {
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
         console.log(snapshot.val());
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snapshot){
-          console.log(snapshot.val());
+          document.getElementById('goalTemp').innerHTML = snapshot.value();
         });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snapshot){
+          document.getElementById('currentTemp').innerHTML = snapshot.value();
+        });
+        document.getElementById('goalPercent').innerHTML = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2);
+          document.getElementById('goalProgressBar').style.width = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2)+"%";
+
       });
 
     } else {
