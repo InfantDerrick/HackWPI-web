@@ -1,5 +1,12 @@
 (function ($) {
   'use strict';
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("success");
+      } else {
+          window.open('/login.html', '_self');
+      }
+    });
   var weatherApiCall = 'https://api.openweathermap.org/data/2.5/forecast?q=Acton,us&APPID=e551d8da3b849d6e3ecc88ffa2ac5cca';
 
   $.getJSON(weatherApiCall, weatherCallBack);
@@ -138,6 +145,14 @@ function login(){
   var errorMessage = error.message;
   window.alert(error);
 });
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user.email);
+      window.open('/index.html', '_self');
+    } else {
+      window.alert("hey it a'int working chump")
+    }
+  });
 }
 function register(){
   username = document.getElementById("username").value;
@@ -152,6 +167,13 @@ function register(){
     var errorMessage = error.message;
     alert(error);
   });
-  console.log("ASDasd00");
-}
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user.email);
+        window.open('/index.html', '_self');
+      } else {
+        window.alert("hey it a'int working chump")
+      }
+    });
+  }
 }
