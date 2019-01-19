@@ -41,6 +41,15 @@
       }else {
         document.getElementsByClassName("time-val")[i-1].innerHTML = epochConverter(weatherDetails[i].dt).getUTCHours()+":00";
         document.getElementsByClassName("weather-val")[i].innerHTML = kelvinToFaren(weatherDetails[i].main.temp).toFixed(2)+"°";
+        var icon = "";
+        if(weatherDetails[i].weather[0].main == "Snow"){
+          icon = "mdi-snowflake";
+        }else if(weatherDetails[i].weather[0].main = "Clear"){
+          icon = "mdi-weather-sunny";
+        }else if(weatherDetails[i].weather[0].main = "Clouds"){
+          icon = "mdi-weather-cloudy"
+        }
+        document.getElementsByClassName("weatherIcon")[i-1].classList.add(icon);
       }
     }
   }
