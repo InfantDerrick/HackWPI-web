@@ -18,12 +18,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(snapshot.val());
         deviceNumber = snapshot.val();
       });
-      firebase.database().ref('devices').child(parseInt(deviceNumber)).once('value', function(snapshot){
-        console.log(snapshot.value());
-        document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
-        document.getElementById('currentTemp').innerHTML == snapshot.temperature;
-        document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
-        document.getElementById('goalProgressBar').style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+      firebase.database().ref('devices/'+parseInt(deviceNumber)+'/').child('temperature_goal').once('value', function(snapshot){
+        console.log(snapshot.val());
       });
     } else {
       window.open('./login.html', '_self');
