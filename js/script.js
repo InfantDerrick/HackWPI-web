@@ -151,3 +151,10 @@ function epochConverter(epochTime){
 function kelvinToFaren(kelvin){
   return ((kelvin-273.15)*1.8)+32
 }
+function signOut(){
+  firebase.auth().signOut().then(function() {
+    window.open('./index.html', '_self');
+  }).catch(function(error) {
+    window.alert("Error: " + error);
+  });
+}
