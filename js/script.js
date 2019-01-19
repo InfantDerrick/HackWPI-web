@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snap){
           document.getElementById('currentTemp').innerHTML = snap.val();
         });
+        console.log((parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2));
         document.getElementById('goalPercent').innerHTML = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2);
           document.getElementById('goalProgressBar').style.width = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2)+"%";
 
