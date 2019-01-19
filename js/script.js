@@ -26,8 +26,13 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('mainTemp').innerHTML = snap.val();
           current = snap.val();
           console.log(current/goal);
+          if(current > goal){
+            document.getElementById('goalPercent').innerHTML = ((goal/current)*(100)).toFixed(2) + "%";
+              document.getElementById('goalProgressBar').style.width = ((goal/current)*(100)).toFixed(2)+"%";
+          }else{
           document.getElementById('goalPercent').innerHTML = ((current/goal)*(100)).toFixed(2) + "%";
             document.getElementById('goalProgressBar').style.width = ((current/goal)*(100)).toFixed(2)+"%";
+          }
         });
       });
 
