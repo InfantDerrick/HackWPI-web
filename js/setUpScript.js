@@ -7,6 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       var displayName = document.getElementById('displayName').value;
       var imgUrl = document.getElementById('imgUrl').value;
       var deviceNumber = parseInt(document.getElementById('deviceNumber').value);
+      console.log(displayName);
       firebase.auth().currentUser.updateProfile({
         displayName: displayName,
         photoURL: imgUrl
