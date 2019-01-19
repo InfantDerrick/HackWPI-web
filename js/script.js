@@ -4,7 +4,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       var displayName = firebase.auth().currentUser.displayName;
       var deviceNumber;
       firebase.database().ref('users/'+displayName+'/').child('device').once('value').then(function(snapshot){
-        console.log(snapshot.val);
+        console.log(snapshot);
         deviceNumber = snapshot.val;
       });
       firebase.database().ref('devices/'+deviceNumber+'/').once('value').then(function(snapshot){
