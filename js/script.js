@@ -26,11 +26,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('mainTemp').innerHTML = snap.val();
           current = snap.val();
           console.log(current/goal);
+          document.getElementById('goalPercent').innerHTML = ((current/goal)*(100)).toFixed(2);
+            document.getElementById((current/goal)*(100)).toFixed(2)+"%";
         });
-        console.log((current/goal));
-        document.getElementById('goalPercent').innerHTML = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2);
-          document.getElementById('goalProgressBar').style.width = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2)+"%";
-
       });
 
     } else {
