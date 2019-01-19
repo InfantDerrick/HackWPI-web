@@ -10,11 +10,6 @@ if (user && user.displayName == null ) {
     displayName: displayName,
     photoURL: imgUrl
   }).then(function updateData() {
-    firebase.database().ref('users').set({
-      displayName: {
-        "deviceNumber": deviceNumber
-      }
-    });
     window.open('./login.html', '_self');
 }).catch(function(error){
   console.log(error);
