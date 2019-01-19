@@ -192,11 +192,11 @@ function signOut(){
 function lightToggle(){
   var displayName = firebase.auth().currentUser.displayName;
   firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
-    firebase.database().ref('devices/'+snapshot.val()+'/').child('lightState').once('value', function(snap){
+    firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').once('value', function(snap){
       if(snap.val()){
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightState').set(false);
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').set(false);
       }else{
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightState').set(true);
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').set(true);
       }
       location.reload();
     });
