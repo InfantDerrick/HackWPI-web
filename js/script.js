@@ -7,7 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(snapshot.val());
         deviceNumber = snapshot.val();
       });
-      firebase.database().ref('devices').child(deviceNumber).once('value', function(snapshot){
+      firebase.database().ref('devices').child(parseInt(deviceNumber)).once('value', function(snapshot){
         console.log(snapshot.value());
         document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
         document.getElementById('currentTemp').innerHTML == snapshot.temperature;
