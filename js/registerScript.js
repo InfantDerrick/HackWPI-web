@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log(user.email);
-      window.open('./index.html', '_self');
+      window.open('./login.html', '_self');
     }
   });
 function register(){
