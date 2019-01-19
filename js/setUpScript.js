@@ -1,6 +1,6 @@
 function setUp(){
   var user = firebase.auth().currentUser;
-
+  console.log("hey there");
 if (user && user.displayName == null ) {
   var displayName = document.getElementById('displayName').value;
   var imgUrl = document.getElementById('imgUrl').value;
