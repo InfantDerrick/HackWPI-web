@@ -7,9 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         if(!snapshot.hasChild(user.displayName)){
           var x = user.displayName;
           firebase.database().ref('users').set({
-            "sdas": {
-              "deviceNumber": deviceNumber
-            }
+            "sdas": "fuck"
           });
         }
       })
