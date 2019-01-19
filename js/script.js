@@ -35,6 +35,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           }
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').once('value', function(snap){
+          console.log(snap.val());
           if(snap.val()){
             document.getElementById('lightBulb').classList.add('mdi-lightbulb-on');
             document.getElementById('lightState').innerHTML = "ON";
