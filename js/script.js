@@ -1,12 +1,12 @@
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("success");
+    } else {
+        window.open('./login.html', '_self');
+    }
+  });
 (function ($) {
   'use strict';
-  firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("success");
-      } else {
-          window.open('/login.html', '_self');
-      }
-    });
   var weatherApiCall = 'https://api.openweathermap.org/data/2.5/forecast?q=Acton,us&APPID=e551d8da3b849d6e3ecc88ffa2ac5cca';
 
   $.getJSON(weatherApiCall, weatherCallBack);
@@ -136,44 +136,4 @@ function epochConverter(epochTime){
 }
 function kelvinToFaren(kelvin){
   return ((kelvin-273.15)*1.8)+32
-}
-function login(){
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-  firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  window.alert(error);
-});
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log(user.email);
-      window.open('/index.html', '_self');
-    } else {
-      window.alert("hey it a'int working chump")
-    }
-  });
-}
-function register(){
-  username = document.getElementById("username").value;
-  password1 = document.getElementById("password1").value;
-  password2 = document.getElementById("password2").value;
-  if(password1 != password2){
-    alert("The passwords do not match");
-  }else{
-    firebase.auth().createUserWithEmailAndPassword(username, password1).catch(function(error) {
-
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    alert(error);
-  });
-  firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log(user.email);
-        window.open('/index.html', '_self');
-      } else {
-        window.alert("hey it a'int working chump")
-      }
-    });
-  }
 }
