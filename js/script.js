@@ -42,7 +42,16 @@ firebase.auth().onAuthStateChanged(function(user) {
           }else{
             document.getElementById('lightState').innerHTML = "OFF";
           }
-        })
+        });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').once('value', function(snap){
+          console.log(snap.val());
+          if(snap.val()){
+            document.getElementById('doorstate').innerHTML = "OPEN";
+          }else{
+            document.getElementById('doorIcon').classList.add('mdi-door');
+            document.getElementById('doorstate').innerHTML = "CLOSED";
+          }
+        });
       });
 
     } else {
@@ -197,6 +206,19 @@ function lightToggle(){
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').set(false);
       }else{
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').set(true);
+      }
+      location.reload();
+    });
+  });
+}
+function doorToggle(){
+  var displayName = firebase.auth().currentUser.displayName;
+  firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
+    firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').once('value', function(snap){
+      if(snap.val()){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').set(false);
+      }else{
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').set(true);
       }
       location.reload();
     });
