@@ -9,13 +9,13 @@ function register(){
   password1 = document.getElementById("password1").value;
   password2 = document.getElementById("password2").value;
   if(password1 != password2){
-    alert("The passwords do not match");
+    window.alert("The passwords do not match");
   }else{
     firebase.auth().createUserWithEmailAndPassword(username, password1).catch(function(error) {
 
     var errorCode = error.code;
     var errorMessage = error.message;
-    alert(error);
+    window.alert(error);
   });
 }
 }
