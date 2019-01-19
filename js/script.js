@@ -16,9 +16,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       var deviceNumber;
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
         console.log(snapshot.val());
-        deviceNumber = snapshot.val();
+        deviceNumber = snapshot.val().toString();
       });
-      firebase.database().ref('devices/'+deviceNumber.toString()+'/').child('temperature_goal').once('value', function(snapshot){
+      firebase.database().ref('devices/'+deviceNumber+'/').child('temperature_goal').once('value', function(snapshot){
         console.log(snapshot.val());
       });
     } else {
