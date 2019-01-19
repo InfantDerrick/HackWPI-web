@@ -15823,6 +15823,7 @@ ul {
     .navbar-nav .nav-item.dropdown .navbar-dropdown {
       right: auto;
       left: 0; }
+
     @media (max-width: 991px) {
       .nav .nav-item.dropdown .navbar-dropdown,
       .navbar-nav .nav-item.dropdown .navbar-dropdown {
@@ -16044,7 +16045,9 @@ ul {
     .table.table-bordered thead tr th {
       border-left: none;
       border-right: none; }
-
+#lightBulb:hover{
+  cursor: pointer;
+}
 /*-------------------------------------------------------------------*/
 /* === Landing screens === */
 /* Auth */
@@ -16244,5 +16247,3 @@ ul {
 @media (min-width: 992px) {
   .error-page .error-page-divider {
     border-left: 3px solid rgba(255, 255, 255, 0.2); } }
-
-/*# sourceMappingURL=maps/style.css.map */
