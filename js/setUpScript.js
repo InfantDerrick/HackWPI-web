@@ -1,5 +1,9 @@
+var flag == false;
+function setUp(){
+  flag = true;
+}
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user && user.displayName == null) {
+    if (user && user.displayName == null && flag) {
       var displayName = document.getElementById('displayName').value;
       var imgUrl = document.getElementById('imgUrl').value;
       var deviceNumber = parseInt(document.getElementById('deviceNumber').value);
