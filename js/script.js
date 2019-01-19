@@ -15,11 +15,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       var displayName = firebase.auth().currentUser.displayName;
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
         console.log(snapshot.val());
-        var deviceNumber = ''+snapshot.val();
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snapshot){
+          console.log(snapshot.val());
+        });
       });
-      firebase.database().ref('devices/'+deviceNumber+'/').child('temperature_goal').once('value', function(snapshot){
-        console.log(snapshot.val());
-      });
+
     } else {
       window.open('./login.html', '_self');
     }
