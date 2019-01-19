@@ -15,11 +15,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       var displayName = firebase.auth().currentUser.displayName;
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
         console.log(snapshot.val());
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snapshot){
-          document.getElementById('goalTemp').innerHTML = snapshot.value();
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
+          document.getElementById('goalTemp').innerHTML = snap.val();
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snapshot){
-          document.getElementById('currentTemp').innerHTML = snapshot.value();
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snap){
+          document.getElementById('currentTemp').innerHTML = snap.val();
         });
         document.getElementById('goalPercent').innerHTML = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2);
           document.getElementById('goalProgressBar').style.width = (parseFloat(document.getElementById('currentTemp').innerHTML).innerHTML)/parseFloat(document.getElementById('goalTemp')).toFixed(2)+"%";
