@@ -6,15 +6,15 @@ firebase.auth().onAuthStateChanged(function(user) {
       firebase.database().ref('users/'+displayName).once('value').then(function(snapshot){
         deviceNumber = snapshot.device;
       });
+      firebase.database().ref('devices/'+deviceNumber+'/').once('value').then(function(snapshot){
+        document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
+        document.getElementById('currentTemp').innerHTML == snapshot.temperature;
+        document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+        document.getElementById('goalProgressBar').style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+      });
     } else {
       window.open('./login.html', '_self');
     }
-    firebase.database().ref('devices/'+deviceNumber+'/').once('value').then(function(snapshot){
-      document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
-      document.getElementById('currentTemp').innerHTML == snapshot.temperature;
-      document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
-      document.getElementById('goalProgressBar').style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
-    });
   });
 (function ($) {
   'use strict';
