@@ -199,6 +199,6 @@ function lightToggle(){
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lightState').set(true);
       }
       location.reload();
-    })
-  }
+    });
+  });
 }
