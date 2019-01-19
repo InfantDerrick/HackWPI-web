@@ -4,7 +4,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       window.open('./index.html', '_self');
     }
   });
-}
 function register(){
   username = document.getElementById("username").value;
   password1 = document.getElementById("password1").value;
