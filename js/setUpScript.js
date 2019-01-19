@@ -1,4 +1,4 @@
-var flag == false;
+var flag = false;
 function setUp(){
   flag = true;
 }
