@@ -7,6 +7,12 @@ firebase.auth().onAuthStateChanged(function(user) {
   });
 (function ($) {
   'use strict';
+  var currentUser = firebase.auth().currentUser;
+  var displayName = currentUser.displayName;
+  var deviceNumber;
+  firebase.database().ref('users/'+displayName).once('value').then(function(snapshot){
+    deviceNumber = snapshot.device;
+  });
   var weatherApiCall = 'https://api.openweathermap.org/data/2.5/forecast?q=Acton,us&APPID=e551d8da3b849d6e3ecc88ffa2ac5cca';
 
   $.getJSON(weatherApiCall, weatherCallBack);
@@ -60,6 +66,13 @@ firebase.auth().onAuthStateChanged(function(user) {
       }
     }
   }
+
+  firebase.database().ref('devices/'+deviceNumber+'/').once('value').then(function(snapshot){
+    document.getElementById('goalTemp').innerHTML == snapshot.temperature_goal;
+    document.getElementById('currentTemp').innerHTML == snapshot.temperature;
+    document.getElementById('goalPercent').innerHTML == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+    document.getElementById(goalProgressBar).style.width == (snapshot.temperature/snapshot.temperature_goal).toFixed(2);
+  });
   //e551d8da3b849d6e3ecc88ffa2ac5cca
   $(function () {
     if ($('#dashboard-area-chart').length) {
