@@ -9,7 +9,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       }).then(function updateData() {
         firebase.database().ref('users').set({
           displayName: {
-            "deviceNumber": deviceNumber;
+            "deviceNumber": deviceNumber
           }
         });
         window.open('./login.html', '_self');
