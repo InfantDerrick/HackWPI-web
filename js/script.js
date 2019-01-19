@@ -5,8 +5,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       }
       firebase.database().ref('users').once('value', function(snapshot){
         if(!snapshot.hasChild(user.displayName)){
+          var x = user.displayName;
           firebase.database().ref('users').set({
-            user.displayName: {
+            x: {
               "deviceNumber": deviceNumber
             }
           });
