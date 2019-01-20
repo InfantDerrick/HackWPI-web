@@ -84,7 +84,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           '</td></tr>' + doc;
           i++;
           console.log(doc);
-          document.getElementById(logBody).innerHTML = doc;
+          document.getElementById("logBody").innerHTML = doc;
 
         });
         });
