@@ -77,8 +77,8 @@ firebase.auth().onAuthStateChanged(function(user) {
             }else{
                 percent = ind[0]/ind[0];
             }
-            if(change>goal){
-              changeString = '</td><td class="text-danger">' + change.toFixed(2)+'<i class="mdi mdi-arrow-down"></i>'
+            if(change<0){
+              changeString = '</td><td class="text-danger">' + -change.toFixed(2)+'<i class="mdi mdi-arrow-down"></i>'
             }else{
               changeString = '</td><td class="text-success">' + change.toFixed(2)+'<i class="mdi mdi-arrow-up"></i>'
             }
