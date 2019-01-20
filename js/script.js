@@ -67,7 +67,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           snap.forEach(function(str){
           var parse = str.val().parse;
           var ind = parse.split(";");
-          console.log(ind);
+
             var doc = "";
             var percent;
             var change = goal/ind[0]
@@ -83,6 +83,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + change+'<i class="mdi mdi-arrow-down"></i>'+
           '</td></tr>' + doc;
           i++;
+          console.log(doc);
           document.getElementById(logBody).innerHTML = doc;
 
         });
