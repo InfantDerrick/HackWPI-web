@@ -16045,7 +16045,7 @@ ul {
     .table.table-bordered thead tr th {
       border-left: none;
       border-right: none; }
-#lightBulb:hover, #doorIcon:hover{
+#lightBulb:hover, #lockstate:hover{
   cursor: pointer;
 }
 /*-------------------------------------------------------------------*/
