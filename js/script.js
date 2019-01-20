@@ -21,6 +21,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
         });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('humidity').once('value', function(snap){
+          document.getElementById('mainTemp').innerHTML = snap.val();
+        });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snap){
           document.getElementById('currentTemp').innerHTML = snap.val();
           document.getElementById('mainTemp').innerHTML = snap.val();
