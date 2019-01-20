@@ -79,7 +79,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             if(ind[0]>goal){
                 percent = goal/ind[0];
             }else{
-                percent = ind[0]/ind[0];
+                percent = ind[0]/goal;
             }
             if(change<0){
               changeString = '</td><td class="text-danger">' + -change.toFixed(2)+'<i class="mdi mdi-arrow-down"></i>'
