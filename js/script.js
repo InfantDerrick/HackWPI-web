@@ -69,18 +69,24 @@ firebase.auth().onAuthStateChanged(function(user) {
           var ind = parse.split(";");
 
             var doc = "";
+            var changeString = "";
             var percent;
-            var change = goal/ind[0]
+            var change = goal-ind[0]
             if(ind[0]>goal){
                 percent = goal/ind[0];
             }else{
                 percent = ind[0]/ind[0];
             }
+            if(change>goal){
+              changeString = '</td><td class="text-danger">' + change.toFixed(2)+'<i class="mdi mdi-arrow-down"></i>'
+            }else{
+              changeString = '</td><td class="text-success">' + change.toFixed(2)+'<i class="mdi mdi-arrow-up"></i>'
+            }
 
           doc = '<tr><td class="font-weight-medium">'+i+'</td><td>'+ind[1]+'</td><td>'+'<div class="progress">'+
             '<div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: '+percent*100+'%" aria-valuenow="'+percent*100+'" aria-valuemin="0"'+
               'aria-valuemax="100"></div>' +
-          '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + change+'<i class="mdi mdi-arrow-down"></i>'+
+          '</div>'+'</td><td>'+ind[0]+changeString+
           '</td></tr>';
           i++;
           console.log(doc);
