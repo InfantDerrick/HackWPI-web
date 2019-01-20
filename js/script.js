@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(snapshot.val());
         var goal = 0;
         var current = 0;
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value').then(function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value', function(snap){
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
         });
