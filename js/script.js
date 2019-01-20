@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       // })
       console.log("success");
       var displayName = firebase.auth().currentUser.displayName;
-      firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
+      firebase.database().ref('users/'+displayName+'/').child('deviceNumber').on('value', function(snapshot){
         console.log(snapshot.val());
         var goal = 0;
         var current = 0;
@@ -21,10 +21,10 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('humidity').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('humidity').on('value', function(snap){
           document.getElementById('mainTemp').innerHTML = snap.val();
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').on('value', function(snap){
           document.getElementById('currentTemp').innerHTML = snap.val();
           current = snap.val();
           console.log(current/goal);
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('goalProgressBar').style.width = ((current/goal)*(100)).toFixed(2)+"%";
           }
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lightstate').on('value', function(snap){
           console.log(snap.val());
           if(snap.val()){
             document.getElementById('lightBulb').classList.add('mdi-lightbulb-on');
@@ -45,7 +45,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('lightState').innerHTML = "OFF";
           }
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').on('value', function(snap){
           console.log(snap.val());
           if(snap.val()){
             document.getElementById('doorstate').innerHTML = "OPEN";
@@ -54,7 +54,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('doorstate').innerHTML = "CLOSED";
           }
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').on('value', function(snap){
           console.log(snap.val());
           if(snap.val()){
             document.getElementById('lockstate').innerHTML = '<i class="mdi mdi-lock e mr-1" aria-hidden="true"></i>LOCKED';
@@ -242,7 +242,7 @@ function increaseTemperatureGoalByOne(){
     });
 });
 }
-function deccreaseTemperatureGoalByOne(){
+function decreaseTemperatureGoalByOne(){
   var displayName = firebase.auth().currentUser.displayName;
   firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
     firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
