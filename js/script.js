@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(snapshot.val());
         var goal = 0;
         var current = 0;
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value').then(function(snap){
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
         });
@@ -233,4 +233,19 @@ function lockToggle(){
       location.reload();
     });
   });
+}
+function increaseTemperatureGoalByOne(){
+  var displayName = firebase.auth().currentUser.displayName;
+  firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
+    firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
+      firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').set(snap.value() + 1);
+    }
+}
+function deccreaseTemperatureGoalByOne(){
+  var displayName = firebase.auth().currentUser.displayName;
+  firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
+    firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
+      firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').set(snap.value() - 1);
+    }
+
 }
