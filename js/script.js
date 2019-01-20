@@ -75,7 +75,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               'aria-valuemax="100"></div>' +
           '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + goal-ind[0]>0?(goal-ind[0])+'<i class="mdi mdi-arrow-up"></i>':(-goal+ind[0])+'<i class="mdi mdi-arrow-down"></i>'+
           '</td></tr>' + document.getElementById(logBody).innerHTML;
-          i++
+          i++;
         }
         });
         });
