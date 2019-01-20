@@ -64,6 +64,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temp_logs').limitToLast(6).on('value', function(snap){
           var i = 1;
+          console.log(snap.val());
           snap.forEach(function(str){
           var parse = str.val().parse;
           var ind = parse.split(";");
