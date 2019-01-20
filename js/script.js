@@ -73,6 +73,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           var ind = parse.split(";");
 
             var doc = "";
+            document.getElementById("logBody").innerHTML = "";
             var changeString = "";
             var percent;
             var change = goal-ind[0]
