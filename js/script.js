@@ -55,9 +55,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').once('value', function(snap){
           console.log(snap.val());
           if(snap.val()){
-            document.getElementById('lockstate').innerHTML = "LOCKED";
+            document.getElementById('lockstate').innerHTML = '<i class="mdi mdi-lock e mr-1" aria-hidden="true"></i>LOCKED';
           }else{
-            document.getElementById('lockstate').innerHTML = "UNLOCKED";
+            document.getElementById('lockstate').innerHTML = '<i class="mdi mdi-lock e mr-1" aria-hidden="true"></i>UNLOCKED';
           }
         });
       });
