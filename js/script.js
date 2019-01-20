@@ -23,7 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
               document.getElementById('efficiency-level').innerHTML = currentOutsideTemp>snap.val()?((snap.val()/currentOutsideTemp)*100).toFixed(2):((currentOutsideTemp/snap.val())*100).toFixed(2);
-              document.getElementById('efficienyProgressBar').style.width = currentOutsideTemp>snap.val()?((snap.val()/currentOutsideTemp)*100).toFixed(2):((currentOutsideTemp)/snap.val())*100).toFixed(2);
+              document.getElementById('efficienyProgressBar').style.width = currentOutsideTemp>snap.val()?((snap.val()/currentOutsideTemp)*100).toFixed(2):((currentOutsideTemp/snap.val())*100).toFixed(2);
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('humidity').on('value', function(snap){
           document.getElementById('mainTemp').innerHTML = snap.val();
