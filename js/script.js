@@ -239,13 +239,15 @@ function increaseTemperatureGoalByOne(){
   firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
     firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
       firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').set(snap.value() + 1);
-    }
+    });
+});
 }
 function deccreaseTemperatureGoalByOne(){
   var displayName = firebase.auth().currentUser.displayName;
   firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
     firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').once('value', function(snap){
       firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').set(snap.value() - 1);
-    }
+    });
 
+});
 }
