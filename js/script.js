@@ -81,10 +81,10 @@ firebase.auth().onAuthStateChanged(function(user) {
             '<div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: '+percent*100+'%" aria-valuenow="'+percent*100+'" aria-valuemin="0"'+
               'aria-valuemax="100"></div>' +
           '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + change+'<i class="mdi mdi-arrow-down"></i>'+
-          '</td></tr>' + doc;
+          '</td></tr>';
           i++;
           console.log(doc);
-          document.getElementById("logBody").innerHTML = doc;
+          document.getElementById("logBody").innerHTML += doc;
 
         });
         });
