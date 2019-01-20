@@ -137,7 +137,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       if(i == 0){
         var displayName = firebase.auth().currentUser.displayName;
         firebase.database().ref('users/'+displayName+'/').child('deviceNumber').on('value', function(snapshot){
-          firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value', function(snap)){
+          firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value', function(snap){
             document.getElementById('efficieny-level').innerHTML = kelvinToFaren(weatherDetails[i].main.temp)>snap.val()?(snap.val()/kelvinToFaren(weatherDetails[i].main.temp)).toFixed(2):(kelvinToFaren(weatherDetails[i].main.temp)/snap.val()).toFixed(2);
             document.getElementById('efficienyProgressBar').style.width = kelvinToFaren(weatherDetails[i].main.temp)>snap.val()?(snap.val()/kelvinToFaren(weatherDetails[i].main.temp)).toFixed(2):(kelvinToFaren(weatherDetails[i].main.temp)/snap.val()).toFixed(2);
           });
