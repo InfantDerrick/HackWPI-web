@@ -1,3 +1,4 @@
+var currentOutsideTemp = 0;
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       if(user.displayName == null){
@@ -12,6 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       //   }
       // })
       console.log("success");
+
       var displayName = firebase.auth().currentUser.displayName;
       firebase.database().ref('users/'+displayName+'/').child('deviceNumber').on('value', function(snapshot){
         console.log(snapshot.val());
@@ -20,6 +22,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value', function(snap){
           document.getElementById('goalTemp').innerHTML = snap.val();
           goal = snap.val();
+              document.getElementById('efficiency-level').innerHTML = currentOutsideTemp>snap.val()?((snap.val()/currentOutsideTemp)*100).toFixed(2):((currentOutsideTemp)/snap.val())*100).toFixed(2);
+              document.getElementById('efficienyProgressBar').style.width = currentOutsideTemp>snap.val()?((snap.val()/currentOutsideTemp)*100).toFixed(2):((currentOutsideTemp)/snap.val())*100).toFixed(2);
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('humidity').on('value', function(snap){
           document.getElementById('mainTemp').innerHTML = snap.val();
@@ -135,17 +139,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     month[11] = "December";
     for(var i = 0; i < 8; i++){
       if(i == 0){
-        var displayName = firebase.auth().currentUser.displayName;
-        firebase.database().ref('users/'+displayName+'/').child('deviceNumber').on('value', function(snapshot){
-          firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature_goal').on('value', function(snap){
-            document.getElementById('efficiency-level').innerHTML = kelvinToFaren(weatherDetails[i].main.temp)>snap.val()?(snap.val()/kelvinToFaren(weatherDetails[i].main.temp)).toFixed(2):(kelvinToFaren(weatherDetails[i].main.temp)/snap.val()).toFixed(2);
-            document.getElementById('efficienyProgressBar').style.width = kelvinToFaren(weatherDetails[i].main.temp)>snap.val()?(snap.val()/kelvinToFaren(weatherDetails[i].main.temp)).toFixed(2):(kelvinToFaren(weatherDetails[i].main.temp)/snap.val()).toFixed(2);
-          });
-        });
+
         document.getElementById("day").innerHTML = weekday[epochConverter(weatherDetails[i].dt).getDay()];
         document.getElementsByClassName("weather-date")[0].innerHTML = month[epochConverter(weatherDetails[i].dt).getMonth()] + " " + epochConverter(weatherDetails[i].dt).getDate() +", " + epochConverter(weatherDetails[i].dt).getUTCFullYear() + "</br>";
         document.getElementsByClassName("weather-location")[0].innerHTML = cityName + ", " + country;
         document.getElementsByClassName("weather-val")[0].innerHTML = kelvinToFaren(weatherDetails[i].main.temp).toFixed(2) + '<span class="symbol">&deg;</span>F';
+        currentOutsideTemp = kelvinToFaren(weatherDetails[i].main.temp).toFixed(2);
         document.getElementById("mainWeatherDescription").innerHTML = weatherDetails[i].weather[0].main;
       }else {
         document.getElementsByClassName("time-val")[i-1].innerHTML = epochConverter(weatherDetails[i].dt).getUTCHours()+":00";
