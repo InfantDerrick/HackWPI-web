@@ -52,6 +52,14 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('doorstate').innerHTML = "CLOSED";
           }
         });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').once('value', function(snap){
+          console.log(snap.val());
+          if(snap.val()){
+            document.getElementById('lockstate').innerHTML = "LOCKED";
+          }else{
+            document.getElementById('lockstate').innerHTML = "UNLOCKED";
+          }
+        });
       });
 
     } else {
@@ -211,14 +219,14 @@ function lightToggle(){
     });
   });
 }
-function doorToggle(){
+function lockToggle(){
   var displayName = firebase.auth().currentUser.displayName;
   firebase.database().ref('users/'+displayName+'/').child('deviceNumber').once('value', function(snapshot){
-    firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').once('value', function(snap){
+    firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').once('value', function(snap){
       if(snap.val()){
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').set(false);
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').set(false);
       }else{
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('doorstate').set(true);
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').set(true);
       }
       location.reload();
     });
