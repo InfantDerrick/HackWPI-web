@@ -62,8 +62,24 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('lockstate').innerHTML = '<i class="mdi mdi-lock e mr-1" aria-hidden="true"></i>UNLOCKED';
           }
         });
-      });
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('temp_logs').limitToLast(6).on('value', function(snap){
+          var i = 1;
+          snap.forEach(function(str){
+          var parse = str.val().parse;
+          var ind = parse.split(";");
+          if(ind[0]<-100 || ind[0]>120){
 
+          }else{
+          document.getElementById(logBody).innerHTML = '<tr><td class="font-weight-medium">'+i+'</td><td>'+ind[1]+'</td><td>'+'<div class="progress">'+
+            '<div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: '+ind[0]>goal?goal/ind[0]:ind[0]/goal+'%" aria-valuenow="'+ind[0]>goal?goal/ind[0]:ind[0]/goal+'" aria-valuemin="0"'+
+              'aria-valuemax="100"></div>' +
+          '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + goal-ind[0]>0?(goal-ind[0])+'<i class="mdi mdi-arrow-up"></i>':(-goal+ind[0])+'<i class="mdi mdi-arrow-down"></i>
+          '</td></tr>' + document.getElementById(logBody).innerHTML;
+          i++
+        }
+        });
+        });
+      });
     } else {
       window.open('./login.html', '_self');
     }
