@@ -70,12 +70,14 @@ firebase.auth().onAuthStateChanged(function(user) {
           if(ind[0]<-100 || ind[0]>120){
 
           }else{
-          document.getElementById(logBody).innerHTML = '<tr><td class="font-weight-medium">'+i+'</td><td>'+ind[1]+'</td><td>'+'<div class="progress">'+
+            var doc = "";
+          doc = '<tr><td class="font-weight-medium">'+i+'</td><td>'+ind[1]+'</td><td>'+'<div class="progress">'+
             '<div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: '+ind[0]>goal?goal/ind[0]:ind[0]/goal+'%" aria-valuenow="'+ind[0]>goal?goal/ind[0]:ind[0]/goal+'" aria-valuemin="0"'+
               'aria-valuemax="100"></div>' +
           '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + goal-ind[0]>0?(goal-ind[0])+'<i class="mdi mdi-arrow-up"></i>':(-goal+ind[0])+'<i class="mdi mdi-arrow-down"></i>'+
-          '</td></tr>' + document.getElementById(logBody)!=null?document.getElementById(logBody).innerHTML:"";
+          '</td></tr>' + doc;
           i++;
+          document.getElementById(logBody).innerHTML = doc
         }
         });
         });
