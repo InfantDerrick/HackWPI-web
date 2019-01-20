@@ -26,7 +26,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('temperature').once('value', function(snap){
           document.getElementById('currentTemp').innerHTML = snap.val();
-          document.getElementById('mainTemp').innerHTML = snap.val();
           current = snap.val();
           console.log(current/goal);
           if(current > goal){
