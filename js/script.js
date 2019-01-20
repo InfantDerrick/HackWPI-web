@@ -77,8 +77,9 @@ firebase.auth().onAuthStateChanged(function(user) {
           '</div>'+'</td><td>'+ind[0]+'</td><td class="text-danger">' + goal-ind[0]>0?(goal-ind[0])+'<i class="mdi mdi-arrow-up"></i>':(-goal+ind[0])+'<i class="mdi mdi-arrow-down"></i>'+
           '</td></tr>' + doc;
           i++;
+          document.getElementById(logBody).innerHTML = doc;
         }
-        document.getElementById(logBody).innerHTML = doc;
+
         });
         });
       });
