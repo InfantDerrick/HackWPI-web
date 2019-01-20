@@ -70,7 +70,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             var doc = "";
             var percent;
             var change = goal/ind[0]
-            if(ind[0]>goal{
+            if(ind[0]>goal){
                 percent = goal/ind[0];
             }else{
                 percent = ind[0]/ind[0];
