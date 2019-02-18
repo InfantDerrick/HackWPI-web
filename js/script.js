@@ -59,7 +59,12 @@ firebase.auth().onAuthStateChanged(function(user) {
           }
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('distance').on('value', function(snap){
-          $("#garageState").text(snap.val()?"OPEN":"CLOSED");
+          if(snap.val()){
+            $("#garageState").text("OPEN");
+          }
+          else {
+            $("#garageState").text("CLOSED");
+          }
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').on('value', function(snap){
           console.log(snap.val());
