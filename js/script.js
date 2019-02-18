@@ -61,9 +61,10 @@ firebase.auth().onAuthStateChanged(function(user) {
         firebase.database().ref('devices/'+snapshot.val()+'/').child('distance').on('value', function(snap){
           if(snap.val()){
             $("#garageState").text("OPEN");
-          }
-          else {
+            console.log("OPEN");
+          }else {
             $("#garageState").text("CLOSED");
+            console.log("CLOSED");
           }
         });
         firebase.database().ref('devices/'+snapshot.val()+'/').child('lockstate').on('value', function(snap){
