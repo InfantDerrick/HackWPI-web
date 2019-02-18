@@ -58,7 +58,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById('doorstate').innerHTML = "CLOSED";
           }
         });
-        firebase.database().ref('devices/'+snapshot.val()+'/').child('distance').on('value', function(snap){
+        firebase.database().ref('devices/'+snapshot.val()+'/').child('garageState').on('value', function(snap){
           if(snap.val()){
             $("#garageState").text("OPEN");
             console.log("OPEN");
